@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="Agendify.Abstaction/Agendify.Abstactions.csproj" />
+  <Project Path="Agendify.Application/Agendify.Application.csproj" />
+  <Project Path="Agendify.DataAccess/Agendify.DataAccess.csproj" />
+  <Project Path="Agendify.Entities/Agendify.Entities.csproj" />
+  <Project Path="Agendify.Enums/Agendify.Enums.csproj" />
+  <Project Path="Agendify.Repository/Agendify.Repository.csproj" />
+  <Project Path="Agendify.Services/Agendify.Services.csproj" />
+  <Project Path="Agendify.WebApi/Agendify.WebApi.csproj" />
+</Solution>
