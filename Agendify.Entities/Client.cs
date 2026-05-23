@@ -2,23 +2,21 @@
 
 namespace Agendify.Entities
 {
-    public class Barber
+    public class Client
     {
         [Key]
-        public int BarberId { get; set; }
+        public int ClientId { get; set; }
 
         [Required]
         [StringLength(100)]
         public string FullName { get; set; } = null!;
 
-        [StringLength(100)]
-        public string? Specialty { get; set; }
-
         [StringLength(20)]
         public string? Phone { get; set; }
 
-        public bool Active { get; set; }
-
+        [StringLength(100)]
+        public string? Email { get; set; }
+        public DateTime CreatedDate { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }
