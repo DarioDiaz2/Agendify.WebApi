@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agendify.Abstactions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace Agendify.Entities
 {
-    public class AppointmentService
+    public class AppointmentService : IEntidad
     {
         [Key]
-        public int AppointmentServiceId { get; set; }
+        public int Id { get; set; }
 
+        [ForeignKey(nameof(Appointment))]
         public int AppointmentId { get; set; }
 
-        [ForeignKey("AppointmentId")]
         public virtual Appointment? Appointment { get; set; }
 
+        [ForeignKey(nameof(Service))]
         public int ServiceId { get; set; }
 
-        [ForeignKey("ServiceId")]
         public virtual Service? Service { get; set; }
 
         public decimal Price { get; set; }

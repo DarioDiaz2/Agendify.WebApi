@@ -54,7 +54,7 @@ namespace Agendify.WebApi.Migrations
                 name: "Barbers",
                 columns: table => new
                 {
-                    BarberId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Specialty = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
@@ -63,14 +63,14 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Barbers", x => x.BarberId);
+                    table.PrimaryKey("PK_Barbers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Clients",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
@@ -79,14 +79,14 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.ClientId);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Services",
                 columns: table => new
                 {
-                    ServiceId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -95,7 +95,7 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.ServiceId);
+                    table.PrimaryKey("PK_Services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,7 +208,7 @@ namespace Agendify.WebApi.Migrations
                 name: "Appointments",
                 columns: table => new
                 {
-                    AppointmentId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     BarberId = table.Column<int>(type: "int", nullable: false),
@@ -218,18 +218,18 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Appointments", x => x.AppointmentId);
+                    table.PrimaryKey("PK_Appointments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Appointments_Barbers_BarberId",
                         column: x => x.BarberId,
                         principalTable: "Barbers",
-                        principalColumn: "BarberId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Appointments_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "ClientId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -237,7 +237,7 @@ namespace Agendify.WebApi.Migrations
                 name: "AppointmentServices",
                 columns: table => new
                 {
-                    AppointmentServiceId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppointmentId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
@@ -246,18 +246,18 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppointmentServices", x => x.AppointmentServiceId);
+                    table.PrimaryKey("PK_AppointmentServices", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AppointmentServices_Appointments_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointments",
-                        principalColumn: "AppointmentId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_AppointmentServices_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
-                        principalColumn: "ServiceId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -265,7 +265,7 @@ namespace Agendify.WebApi.Migrations
                 name: "Payments",
                 columns: table => new
                 {
-                    PaymentId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppointmentId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -273,12 +273,12 @@ namespace Agendify.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payments", x => x.PaymentId);
+                    table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Payments_Appointments_AppointmentId",
                         column: x => x.AppointmentId,
                         principalTable: "Appointments",
-                        principalColumn: "AppointmentId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 

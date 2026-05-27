@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agendify.WebApi.Migrations
 {
     [DbContext(typeof(DbDataAccess))]
-    [Migration("20260523225125_CambiosDeCascade")]
-    partial class CambiosDeCascade
+    [Migration("20260527032643_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,11 +30,11 @@ namespace Agendify.WebApi.Migrations
 
             modelBuilder.Entity("Agendify.Entities.Appointment", b =>
                 {
-                    b.Property<int>("AppointmentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BarberId")
                         .HasColumnType("int");
@@ -52,7 +52,7 @@ namespace Agendify.WebApi.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("AppointmentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BarberId");
 
@@ -63,11 +63,11 @@ namespace Agendify.WebApi.Migrations
 
             modelBuilder.Entity("Agendify.Entities.AppointmentService", b =>
                 {
-                    b.Property<int>("AppointmentServiceId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentServiceId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
@@ -81,7 +81,7 @@ namespace Agendify.WebApi.Migrations
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.HasKey("AppointmentServiceId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
 
@@ -92,11 +92,11 @@ namespace Agendify.WebApi.Migrations
 
             modelBuilder.Entity("Agendify.Entities.Barber", b =>
                 {
-                    b.Property<int>("BarberId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BarberId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -114,18 +114,18 @@ namespace Agendify.WebApi.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("BarberId");
+                    b.HasKey("Id");
 
                     b.ToTable("Barbers");
                 });
 
             modelBuilder.Entity("Agendify.Entities.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -143,18 +143,18 @@ namespace Agendify.WebApi.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("Id");
 
                     b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Agendify.Entities.Payment", b =>
                 {
-                    b.Property<int>("PaymentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -165,7 +165,7 @@ namespace Agendify.WebApi.Migrations
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PaymentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AppointmentId");
 
@@ -174,11 +174,11 @@ namespace Agendify.WebApi.Migrations
 
             modelBuilder.Entity("Agendify.Entities.Service", b =>
                 {
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -194,7 +194,7 @@ namespace Agendify.WebApi.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ServiceId");
+                    b.HasKey("Id");
 
                     b.ToTable("Services");
                 });

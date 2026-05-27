@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Agendify.Abstactions;
+using System.ComponentModel.DataAnnotations;
 
 namespace Agendify.Entities
 {
-    public class Barber
+    public class Barber : IEntidad
     {
         [Key]
-        public int BarberId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

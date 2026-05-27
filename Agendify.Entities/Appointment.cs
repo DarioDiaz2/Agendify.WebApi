@@ -1,21 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Agendify.Abstactions;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Agendify.Entities
 {
-    public class Appointment
+    public class Appointment : IEntidad
     {
         [Key]
-        public int AppointmentId { get; set; }
+        public int Id { get; set; }
 
+        [ForeignKey(nameof(Client))]
         public int ClientId { get; set; }
 
-        [ForeignKey("ClientId")]
         public virtual Client? Client { get; set; }
 
+        [ForeignKey(nameof(Barber))]
         public int BarberId { get; set; }
 
-        [ForeignKey("BarberId")]
         public virtual Barber? Barber { get; set; }
 
         public DateTime Date { get; set; }

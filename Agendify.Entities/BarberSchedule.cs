@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Agendify.Abstactions;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Agendify.Entities
 {
-    public class BarberSchedule
+    public class BarberSchedule : IEntidad
     {
         [Key]
-        public int BarberScheduleId { get; set; }
+        public int Id { get; set; }
 
         public DayOfWeek Day { get; set; }
 
@@ -14,9 +15,8 @@ namespace Agendify.Entities
 
         public TimeSpan EndTime { get; set; }
 
+        [ForeignKey(nameof(Barber))]
         public int BarberId { get; set; }
-
-        [ForeignKey("BarberId")]
         public virtual Barber? Barber { get; set; }
     }
 }
