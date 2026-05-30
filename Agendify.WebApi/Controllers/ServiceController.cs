@@ -16,10 +16,7 @@ namespace Agendify.WebApi.Controllers
         private readonly IStringService _stringService;
         private readonly IApplication<Service> _autor;
         private readonly IMapper _mapper;
-        public ServiceController(IApplication<Service> autor
-            , ILogger<ServiceController> logger
-            , IStringService stringService
-            , IMapper mapper)
+        public ServiceController(IApplication<Service> autor, ILogger<ServiceController> logger, IStringService stringService, IMapper mapper)
         {
             _autor = autor;
             _logger = logger;

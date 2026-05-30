@@ -17,10 +17,7 @@ namespace Agendify.WebApi.Controllers
         private readonly IStringService _stringService;
         private readonly IApplication<Barber> _barber;
         private readonly IMapper _mapper;
-        public BarberController(IApplication<Barber> barber
-            , ILogger<BarberController> logger
-            , IStringService stringService
-            , IMapper mapper)
+        public BarberController(IApplication<Barber> barber, ILogger<BarberController> logger, IStringService stringService, IMapper mapper)
         {
             _barber = barber;
             _logger = logger;

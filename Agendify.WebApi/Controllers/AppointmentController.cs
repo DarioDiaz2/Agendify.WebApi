@@ -15,10 +15,7 @@ namespace Agendify.WebApi.Controllers
         private readonly IStringService _stringService;
         private readonly IApplication<Appointment> _appointment;
         private readonly IMapper _mapper;
-        public AppointmentController(IApplication<Appointment> appointment
-            , ILogger<AppointmentController> logger
-            , IStringService stringService
-            , IMapper mapper)
+        public AppointmentController(IApplication<Appointment> appointment , ILogger<AppointmentController> logger, IStringService stringService, IMapper mapper)
         {
             _appointment = appointment;
             _logger = logger;
