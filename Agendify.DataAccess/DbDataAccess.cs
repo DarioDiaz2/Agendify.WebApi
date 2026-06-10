@@ -12,6 +12,7 @@ namespace Agendify.DataAccess
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<AppointmentService> AppointmentServices { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public DbDataAccess(DbContextOptions<DbDataAccess> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.LogTo(Console.WriteLine).EnableDetailedErrors();
     }
