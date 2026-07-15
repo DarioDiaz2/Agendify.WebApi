@@ -4,7 +4,6 @@ using Agendify.Entities.MicrosoftIdentity;
 using Agendify.Services.AuthService;
 using Agendify.WebApi.Configurations;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,7 +43,7 @@ namespace Agendify.WebApi.Controllers.Identity
                     UserName = user.Email.Substring(0, user.Email.IndexOf('@')),
                     Nombres = user.Nombres,
                     Apellidos = user.Apellidos,
-                    
+
                 }, user.Password);
                 if (Creado.Succeeded)
                 {
@@ -117,5 +116,48 @@ namespace Agendify.WebApi.Controllers.Identity
                     }
             });
         }
+
+
+        public async Task<IActionResult> RegistrarUsuarioConToken([FromBody] UserRegistroRequestDto user, CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var existeUsuario = await _userManager.FindByEmailAsync(user.Email);
+                if (existeUsuario != null)
+                {
+                    return BadRequest("Existe un usuario registrado con el mail " + user.Email + ".");
+                }
+                cancellationToken.ThrowIfCancellationRequested();
+                var username = user.Email.Substring(0, user.Email.IndexOf('@'));
+                var creado = await _userManager.CreateAsync(new User()
+                {
+                    Email = user.Email,
+                    UserName = username,
+                    Nombres = user.Nombres,
+                    Apellidos = user.Apellidos,
+                }, user.Password);
+                if (creado.Succeeded)
+                {
+                    return Ok(new UserRegistroResponseDto
+                    {
+                        NombreCompleto = string.Join(" ", user.Nombres, user.Apellidos),
+                        Email = user.Email,
+                        UserName = username
+                    });
+                }
+                else
+                {
+                    return BadRequest(creado.Errors.Select(e => e.Description).ToList());
+                }
+            }
+            else
+            {
+                return BadRequest("Los datos enviados no son validos.");
+            }
+        }
     }
 }
+
+
+

@@ -1,6 +1,5 @@
 ﻿using Agendify.Application;
 using Agendify.Application.Dtos.Barber;
-using Agendify.Application.Dtos.Service;
 using Agendify.Entities;
 using Agendify.Services;
 using AutoMapper;
